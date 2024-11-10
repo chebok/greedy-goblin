@@ -17,18 +17,16 @@ subprojects {
     version = rootProject.version
 }
 
+ext {
+    val specDir = layout.projectDirectory.dir("../specs")
+    set("spec-v1", specDir.file("game-api-v1.yaml").toString())
+}
+
 tasks {
-    create("build") {
-        group = "build"
-        dependsOn(project(":greedy-goblin-tmp").getTasksByName("build", false))
-    }
-    create("check") {
-        group = "verification"
-        subprojects.forEach { proj ->
-            println("PROJ $proj")
-            proj.getTasksByName("check", false).also {
-                this@create.dependsOn(it)
-            }
+    arrayOf("build", "clean", "check").forEach { tsk ->
+        create(tsk) {
+            group = "build"
+            dependsOn(subprojects.map { it.getTasksByName(tsk, false) })
         }
     }
 }
