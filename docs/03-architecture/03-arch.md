@@ -2,11 +2,11 @@
 
 ## Диаграмма компонентов
 
-![Компонентная архитектура для игры](./arch-components.png)
+![Компонентная архитектура для игры](./arch-components.jpg)
 
 - **Описание**: Диаграмма представляет основные компоненты MVP-версии игры, включая:
     - инфраструктурный слой (Envoy, Keycloak, Monitoring);
-    - серверную часть (API Gateway, Game Engine, Data Storage, Image Generation);
+    - серверную часть (API Gateway, Game Core, Data Storage, Image Generation);
     - мобильное приложение (UI, Game Logic, Networking).
 
 Эта схема описывает взаимодействие ключевых модулей, необходимых для начального этапа разработки.
