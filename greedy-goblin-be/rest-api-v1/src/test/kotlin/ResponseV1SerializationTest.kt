@@ -8,30 +8,40 @@ import kotlin.test.assertEquals
 
 class ResponseV1SerializationTest {
     private val response =
-        SceneResponse(
+        GameSceneResponse(
             success = true,
             scene =
-                Scene(
+                GameSceneView(
                     sceneId = "scene123",
                     gameId = "game456",
                     image = "https://example.com/images/scene.jpg",
-                    description = "You are in a dark forest, with mushrooms scattered around.",
-                    actions = listOf("Move forward", "Pick mushrooms", "Look around"),
+                    sceneTitle = "You are in a dark forest, with mushrooms scattered around.",
+                    playerActions =
+                        listOf(
+                            GameSceneViewPlayerActionsInner("1", "Move forward"),
+                            GameSceneViewPlayerActionsInner("2", "Pick mushrooms"),
+                            GameSceneViewPlayerActionsInner("3", "Look around"),
+                        ),
                 ),
         )
 
     @Test
     fun serialize() {
-        val json = apiV1Mapper.encodeToString(response)
+        val json = apiV1Serializer.encodeToString(response)
 
         assertContains(json, Regex("\"success\":\\s*true"))
-        assertContains(json, Regex("\"actions\":\\s*\\[\"Move forward\",\\s*\"Pick mushrooms\",\\s*\"Look around\"\\]"))
+        assertContains(
+            json,
+            Regex(
+                "\\{\"id\":\\s*\"1\",\\s*\"title\":\\s*\"Move forward\"}",
+            ),
+        )
     }
 
     @Test
     fun deserialize() {
-        val json = apiV1Mapper.encodeToString(response)
-        val obj = apiV1Mapper.decodeFromString<SceneResponse>(json)
+        val json = apiV1Serializer.encodeToString(response)
+        val obj = apiV1Serializer.decodeFromString<GameSceneResponse>(json)
 
         assertEquals(response, obj)
     }

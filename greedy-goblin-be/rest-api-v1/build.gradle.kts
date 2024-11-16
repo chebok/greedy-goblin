@@ -48,6 +48,7 @@ openApiGenerate {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.kotlinx.serialization.json)
+    implementation(project(":greedy-goblin-common")) // Подключение модуля с внутренними моделями
     testImplementation(kotlin("test-junit"))
 }
 

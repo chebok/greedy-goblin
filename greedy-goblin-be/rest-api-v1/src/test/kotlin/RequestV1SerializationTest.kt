@@ -14,15 +14,15 @@ class RequestV1SerializationTest {
 
     @Test
     fun serialize() {
-        val json = apiV1Mapper.encodeToString(request)
+        val json = apiV1Serializer.encodeToString(request)
 
         assertContains(json, Regex("\"mode\":\\s*\"single\""))
     }
 
     @Test
     fun deserialize() {
-        val json = apiV1Mapper.encodeToString(request)
-        val obj = apiV1Mapper.decodeFromString<GameStartRequest>(json)
+        val json = apiV1Serializer.encodeToString(request)
+        val obj = apiV1Serializer.decodeFromString<GameStartRequest>(json)
 
         assertEquals(request, obj)
     }
@@ -33,7 +33,7 @@ class RequestV1SerializationTest {
             """
             {"mode": null}
             """.trimIndent()
-        val obj = apiV1Mapper.decodeFromString<GameStartRequest>(jsonString)
+        val obj = apiV1Serializer.decodeFromString<GameStartRequest>(jsonString)
 
         assertEquals(null, obj.mode)
     }

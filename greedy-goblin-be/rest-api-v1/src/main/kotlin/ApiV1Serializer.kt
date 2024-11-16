@@ -2,7 +2,7 @@ package io.goblingamble.api.v1
 
 import kotlinx.serialization.json.Json
 
-val apiV1Mapper =
+val apiV1Serializer =
     Json {
         ignoreUnknownKeys = true // Игнорирует неизвестные поля в JSON
         encodeDefaults = true // Включает значения по умолчанию

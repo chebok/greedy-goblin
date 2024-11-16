@@ -28,3 +28,4 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":greedy-goblin-tmp")
 include(":rest-api-v1")
+include(":greedy-goblin-common")

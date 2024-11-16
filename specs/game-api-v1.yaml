@@ -35,18 +35,25 @@ paths:
                 $ref: '#/components/schemas/GameStartResponse'
 
   /game/scene:
-    get:
+    post:
       tags:
         - game
       summary: Retrieve the current active scene
       operationId: getActiveScene
+      requestBody:
+        description: Request to the game scene
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameSceneRequest'
+        required: true
       responses:
         200:
           description: Successfully retrieved the current scene
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SceneResponse'
+                $ref: '#/components/schemas/GameSceneResponse'
 
   /game/action:
     post:
@@ -59,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActionRequest'
+              $ref: '#/components/schemas/GameActionRequest'
         required: true
       responses:
         200:
@@ -67,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActionResponse'
+                $ref: '#/components/schemas/GameActionResponse'
 
   /game/end:
     post:
@@ -101,14 +108,36 @@ components:
         message:
           type: string
           description: Optional message with details (e.g., error description)
+        errors:
+          type: array
+          description: List of errors that occurred during the request
+          items:
+            $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code
+        group:
+          type: string
+          description: Logical group for the error (e.g., "validation", "server")
+        message:
+          type: string
+          description: Detailed description of the error
+
 
     GameStartRequest:
       type: object
       properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
         mode:
           type: string
           enum:
             - single
+            - coop
           description: Mode of game
 
     GameStartResponse:
@@ -120,7 +149,16 @@ components:
               type: string
               description: Unique identifier for the new game session
 
-    Scene:
+    GameSceneRequest:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        gameId:
+          type: string
+          description: ID of the game session
+
+    GameSceneView:
       type: object
       properties:
         sceneId:
@@ -132,37 +170,51 @@ components:
         image:
           type: string
           description: URI of the scene's image
-        description:
+        sceneTitle:
           type: string
           description: Brief text describing the scene
-        actions:
+        playerActions:
           type: array
-          items:
-            type: string
           description: Available actions the player can choose
+          items:
+            type: object
+            required: [id, title]
+            properties:
+              id:
+                type: string
+              title:
+                description: Describing the action
+                type: string
 
-    SceneResponse:
+    GameSceneResponse:
       allOf:
         - $ref: '#/components/schemas/BaseResponse'
         - type: object
           properties:
             scene:
-              $ref: '#/components/schemas/Scene'
+              $ref: '#/components/schemas/GameSceneView'
 
-    ActionRequest:
+    GameActionRequest:
       type: object
       properties:
-        action:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        gameId:
+          type: string
+          description: ID of the game session
+        actionId:
           type: string
           description: Action chosen by the player
 
-    ActionResponse:
+    GameActionResponse:
       allOf:
         - $ref: '#/components/schemas/BaseResponse'
 
     GameEndRequest:
       type: object
       properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
         gameId:
           type: string
           description: ID of the game session to end
@@ -170,3 +222,30 @@ components:
     GameEndResponse:
       allOf:
         - $ref: '#/components/schemas/BaseResponse'
+
+    GameRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    GameRequestDebugStubs:
+      type: string
+      enum:
+        # Общие стабы
+        - success         # Успешный сценарий
+        - serverError     # Эмуляция серверной ошибки
+        - invalidRequest    # Некорректные данные в запросе
+        # Оставшиеся стабы
+        - gameNotActive   # Игра неактивна (не начата или завершена)
+        - badAction       # Некорректное действие игрока
+
+    GameRequestDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/GameRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/GameRequestDebugStubs'
+
