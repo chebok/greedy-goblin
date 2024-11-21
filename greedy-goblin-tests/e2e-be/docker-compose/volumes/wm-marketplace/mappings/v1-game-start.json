@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/api/v1/game/start",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.mode == 'single')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "success": true,
+      "message": "Game started successfully",
+      "gameId": "game-123"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+
+

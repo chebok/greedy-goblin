@@ -1,0 +1,251 @@
+openapi: 3.0.4
+info:
+  title: "Greedy Goblin Game API"
+  description: API for managing game sessions, scenes, and player actions in the Greedy Goblin game.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: game
+    description: Game session and scene management
+
+paths:
+  /game/start:
+    post:
+      tags:
+        - game
+      summary: Start a new game session
+      operationId: startGame
+      requestBody:
+        description: Request to start a new game session
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameStartRequest'
+        required: true
+      responses:
+        200:
+          description: Game started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameStartResponse'
+
+  /game/scene:
+    post:
+      tags:
+        - game
+      summary: Retrieve the current active scene
+      operationId: getActiveScene
+      requestBody:
+        description: Request to the game scene
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameSceneRequest'
+        required: true
+      responses:
+        200:
+          description: Successfully retrieved the current scene
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSceneResponse'
+
+  /game/action:
+    post:
+      tags:
+        - game
+      summary: Perform an action in the current scene
+      operationId: performAction
+      requestBody:
+        description: Action chosen by the player
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameActionRequest'
+        required: true
+      responses:
+        200:
+          description: Action performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameActionResponse'
+
+  /game/end:
+    post:
+      tags:
+        - game
+      summary: End the current game session
+      operationId: endGame
+      requestBody:
+        description: Request to end the game session
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameEndRequest'
+        required: true
+      responses:
+        200:
+          description: Game session ended successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameEndResponse'
+
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+        message:
+          type: string
+          description: Optional message with details (e.g., error description)
+        errors:
+          type: array
+          description: List of errors that occurred during the request
+          items:
+            $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code
+        group:
+          type: string
+          description: Logical group for the error (e.g., "validation", "server")
+        message:
+          type: string
+          description: Detailed description of the error
+
+
+    GameStartRequest:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        mode:
+          type: string
+          enum:
+            - single
+            - coop
+          description: Mode of game
+
+    GameStartResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            gameId:
+              type: string
+              description: Unique identifier for the new game session
+
+    GameSceneRequest:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        gameId:
+          type: string
+          description: ID of the game session
+
+    GameSceneView:
+      type: object
+      properties:
+        sceneId:
+          type: string
+          description: Unique identifier of the scene
+        gameId:
+          type: string
+          description: ID of the game session
+        image:
+          type: string
+          description: URI of the scene's image
+        sceneTitle:
+          type: string
+          description: Brief text describing the scene
+        playerActions:
+          type: array
+          description: Available actions the player can choose
+          items:
+            type: object
+            required: [id, title]
+            properties:
+              id:
+                type: string
+              title:
+                description: Describing the action
+                type: string
+
+    GameSceneResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            scene:
+              $ref: '#/components/schemas/GameSceneView'
+
+    GameActionRequest:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        gameId:
+          type: string
+          description: ID of the game session
+        actionId:
+          type: string
+          description: Action chosen by the player
+
+    GameActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+
+    GameEndRequest:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/GameRequestDebug'
+        gameId:
+          type: string
+          description: ID of the game session to end
+
+    GameEndResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+
+    GameRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    GameRequestDebugStubs:
+      type: string
+      enum:
+        # Общие стабы
+        - success         # Успешный сценарий
+        - serverError     # Эмуляция серверной ошибки
+        - invalidRequest    # Некорректные данные в запросе
+        # Оставшиеся стабы
+        - gameNotActive   # Игра неактивна (не начата или завершена)
+        - badAction       # Некорректное действие игрока
+
+    GameRequestDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/GameRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/GameRequestDebugStubs'
+

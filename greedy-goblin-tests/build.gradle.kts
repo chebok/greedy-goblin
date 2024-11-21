@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
-group = "io.goblingamble"
+group = "io.goblingamble.tests"
 version = "0.0.1"
 
 allprojects {

@@ -1,4 +1,4 @@
-rootProject.name = "greedy-goblin-be"
+rootProject.name = "greedy-goblin-tests"
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -20,12 +20,9 @@ pluginManagement {
     }
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-}
+// plugins {
+//    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+// }
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-include(":greedy-goblin-tmp")
-include(":rest-api-v1")
-include(":greedy-goblin-common")
+// include(":rest-api-v1")
+include(":e2e-be")
