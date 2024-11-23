@@ -1,6 +1,8 @@
+package io.greedy.goblin.common
+
+import io.greedy.goblin.common.models.*
+import io.greedy.goblin.common.stubs.AppStubs
 import kotlinx.datetime.Instant
-import models.*
-import stubs.AppStubs
 
 data class GameContext(
     // Команда и состояние

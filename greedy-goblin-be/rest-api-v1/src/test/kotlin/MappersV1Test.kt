@@ -1,11 +1,11 @@
-package io.goblingamble.api.v1
+package io.greedy.goblin.api.v1
 
-import GameContext
-import io.goblingamble.api.v1.mappers.fromTransport
-import io.goblingamble.api.v1.mappers.toTransport
-import io.goblingamble.api.v1.models.*
-import models.*
-import stubs.AppStubs
+import io.greedy.goblin.api.v1.mappers.fromTransport
+import io.greedy.goblin.api.v1.mappers.toTransport
+import io.greedy.goblin.api.v1.models.*
+import io.greedy.goblin.common.GameContext
+import io.greedy.goblin.common.models.*
+import io.greedy.goblin.common.stubs.AppStubs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

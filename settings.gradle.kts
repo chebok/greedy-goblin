@@ -4,3 +4,4 @@ rootProject.name = "greedy-goblin"
 
 includeBuild("greedy-goblin-be")
 includeBuild("greedy-goblin-tests")
+includeBuild("greedy-goblin-libs")

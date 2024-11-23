@@ -6,11 +6,11 @@ gradlePlugin {
     plugins {
         register("build-jvm") {
             id = "build-jvm"
-            implementationClass = "io.goblingamble.build.plugins.JvmBuildPlugin"
+            implementationClass = "io.greedy.goblin.build.plugins.JvmBuildPlugin"
         }
         register("build-kmp") {
             id = "build-kmp"
-            implementationClass = "io.goblingamble.build.plugins.KmpBuildPlugin"
+            implementationClass = "io.greedy.goblin.build.plugins.KmpBuildPlugin"
         }
     }
 }
@@ -31,7 +31,7 @@ dependencies {
 //    implementation(libs.plugin.mavenPublish)
 }
 
-group = "io.goblingamble"
+group = "io.greedy.goblin.plugin"
 version = "0.0.1"
 
 subprojects {

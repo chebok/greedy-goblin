@@ -1,4 +1,4 @@
-package io.goblingamble.api.v1.mappers.exceptions
+package io.greedy.goblin.api.v1.mappers.exceptions
 
 import kotlin.reflect.KClass
 

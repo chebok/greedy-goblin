@@ -1,4 +1,4 @@
-package models
+package io.greedy.goblin.common.models
 
 @JvmInline
 value class ActionId(

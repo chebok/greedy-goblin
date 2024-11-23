@@ -1,4 +1,4 @@
-package models
+package io.greedy.goblin.common.models
 
 data class GameScene(
     var sceneId: SceneId = SceneId.NONE, // Уникальный идентификатор сцены

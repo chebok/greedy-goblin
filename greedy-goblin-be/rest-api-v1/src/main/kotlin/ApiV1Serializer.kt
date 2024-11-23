@@ -1,4 +1,4 @@
-package io.goblingamble.api.v1
+package io.greedy.goblin.api.v1
 
 import kotlinx.serialization.json.Json
 

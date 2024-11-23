@@ -1,9 +1,9 @@
 package test.action.v1
 
 import fixture.client.Client
-import io.goblingamble.api.v1.apiV1Serializer
-import io.goblingamble.api.v1.models.GameStartRequest
-import io.goblingamble.api.v1.models.GameStartResponse
+import io.greedy.goblin.api.v1.apiV1Serializer
+import io.greedy.goblin.api.v1.models.GameStartRequest
+import io.greedy.goblin.api.v1.models.GameStartResponse
 import io.kotest.assertions.asClue
 import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe

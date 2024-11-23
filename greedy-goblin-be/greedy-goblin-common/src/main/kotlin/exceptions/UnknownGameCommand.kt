@@ -1,6 +1,6 @@
-package exceptions
+package io.greedy.goblin.common.exceptions
 
-import models.GameCommand
+import io.greedy.goblin.common.models.GameCommand
 
 class UnknownGameCommand(
     command: GameCommand,
