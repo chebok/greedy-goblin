@@ -1,13 +1,13 @@
-package io.goblingamble.api.v1.mappers
+package io.greedy.goblin.api.v1.mappers
 
-import GameContext
-import io.goblingamble.api.v1.mappers.exceptions.UnknownRequestClass
-import io.goblingamble.api.v1.models.*
-import models.ActionId
-import models.AppWorkMode
-import models.GameCommand
-import models.GameId
-import stubs.AppStubs
+import io.greedy.goblin.api.v1.mappers.exceptions.UnknownRequestClass
+import io.greedy.goblin.api.v1.models.*
+import io.greedy.goblin.common.GameContext
+import io.greedy.goblin.common.models.ActionId
+import io.greedy.goblin.common.models.AppWorkMode
+import io.greedy.goblin.common.models.GameCommand
+import io.greedy.goblin.common.models.GameId
+import io.greedy.goblin.common.stubs.AppStubs
 
 fun GameContext.fromTransport(request: Any) {
     when (request) {

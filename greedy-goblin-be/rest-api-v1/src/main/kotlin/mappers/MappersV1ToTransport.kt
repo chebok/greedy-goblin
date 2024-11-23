@@ -1,9 +1,9 @@
-package io.goblingamble.api.v1.mappers
+package io.greedy.goblin.api.v1.mappers
 
-import GameContext
-import exceptions.UnknownGameCommand
-import io.goblingamble.api.v1.models.*
-import models.*
+import io.greedy.goblin.api.v1.models.*
+import io.greedy.goblin.common.GameContext
+import io.greedy.goblin.common.exceptions.UnknownGameCommand
+import io.greedy.goblin.common.models.*
 
 fun GameContext.toTransport(): Any =
     when (val cmd = command) {

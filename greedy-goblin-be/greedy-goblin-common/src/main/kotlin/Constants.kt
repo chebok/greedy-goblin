@@ -1,3 +1,5 @@
+package io.greedy.goblin.common
+
 import kotlinx.datetime.Instant
 
 private val INSTANT_NONE = Instant.fromEpochMilliseconds(Long.MIN_VALUE)

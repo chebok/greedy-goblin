@@ -1,4 +1,4 @@
-package stubs
+package io.greedy.goblin.common.stubs
 
 enum class AppStubs {
     NONE,

@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
 
-    implementation("io.goblingamble:rest-api-v1")
+    implementation("io.greedy.goblin:rest-api-v1")
 
     testImplementation(libs.logback)
     testImplementation(libs.kermit)

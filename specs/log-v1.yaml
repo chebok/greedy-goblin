@@ -1,0 +1,80 @@
+openapi: 3.0.4
+info:
+  title: Greedy Goblin Log Models
+  description: Log models for logging services of the Greedy Goblin game
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    CommonLogModel:
+      title: Общая модель лога
+      description: Общая модель лога для всех микросервисов системы
+      type: object
+      properties:
+        messageTime:
+          type: string
+          format: date-time
+          description: Time when the log message was generated
+        logId:
+          type: string
+          description: Unique identifier for the log entry
+        source:
+          type: string
+          description: Source of the log (e.g., microservice name)
+        game:
+          $ref: '#/components/schemas/GameLogModel'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorLogModel'
+          description: List of errors encountered during the operation
+
+    GameLogModel:
+      title: Модель лога для игрового процесса
+      description: Модель лога для отслеживания запросов и ответов в игровом процессе
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the request
+        playerId:
+          type: string
+          description: Unique identifier of the player performing the action
+        operation:
+          type: string
+          description: Type of the operation being logged
+          enum:
+            - start_game
+            - get_scene
+            - action
+            - end_game
+            - connect
+            - disconnect
+        gameId:
+          type: string
+          description: Unique identifier of the game session
+        gameState:
+          type: string
+          description: Current state of the game process
+        playerAction:
+          type: string
+          description: Identifier of the action chosen by the player
+
+    ErrorLogModel:
+      title: Модель лога для ошибки
+      description: Модель для описания ошибки, возникшей в процессе обработки запроса
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message providing details about what went wrong
+        code:
+          type: string
+          description: Error code identifying the type of the error
+        level:
+          type: string
+          description: Severity level of the error
