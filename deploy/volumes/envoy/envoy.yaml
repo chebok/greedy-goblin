@@ -26,9 +26,9 @@ static_resources:
                     routes:
                       - match: { path: "/" }
                         route: { cluster: app }
-                      - match: { prefix: "/v1/ad/" }
+                      - match: { prefix: "/api/v1/" }
                         route: { cluster: app }
-                      - match: { prefix: "/v2/ad/" }
+                      - match: { prefix: "/v1/ad/" }
                         route: { cluster: app }
                       - match: { prefix: "/admin/" }
                         route: { cluster: keycloak }
@@ -55,8 +55,6 @@ static_resources:
                         forward_payload_header: x-jwt-payload
                     rules:
                       - match: { prefix: /v1/ad/ }
-                        requires: { provider_name: keycloak_provider }
-                      - match: { prefix: /v2/ad/ }
                         requires: { provider_name: keycloak_provider }
                 - name: envoy.filters.http.router
                   typed_config:
