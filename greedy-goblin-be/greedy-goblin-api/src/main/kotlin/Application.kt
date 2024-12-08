@@ -22,11 +22,13 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module(appSettings: AppSettings = initAppSettings()) {
+    configureKoin(appSettings)
     configureSecurity()
     configureHTTP()
     configureSerialization()
     configureDatabases()
+    initSceneUpdates()
     configureSockets()
-    configureRouting(appSettings)
+    configureRouting()
     configureLogging()
 }

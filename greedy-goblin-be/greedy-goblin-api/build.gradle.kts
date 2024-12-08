@@ -17,6 +17,7 @@ jib {
 }
 
 dependencies {
+    implementation("io.insert-koin:koin-ktor:3.5.0")
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.cors)
@@ -24,6 +25,7 @@ dependencies {
     implementation(libs.ktor.server.negotiation)
     implementation(libs.ktor.server.headers.response)
     implementation(libs.ktor.server.headers.caching)
+    implementation(libs.ktor.server.websocket)
 //                // Для того, чтоб получать содержимое запроса более одного раза
 //                В Application.main добавить `install(DoubleReceive)`
 //                implementation("io.ktor:ktor-server-double-receive:${libs.versions.ktor.get()}")

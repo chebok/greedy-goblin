@@ -38,6 +38,7 @@ suspend inline fun <T> IAppSettings.controllerHelper(
             msg = "Request $logId failed for ${clazz.simpleName}",
             marker = "BIZ",
             data = ctx.toLog(logId),
+            e = e,
         )
         ctx.commandState = CommandState.FAIL
         ctx.errors.add(e.asGameError())

@@ -15,7 +15,7 @@ import io.ktor.server.testing.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class V1AdStubApiTest {
+class StubApiTest {
     @Test
     fun create() =
         v1TestApplication(

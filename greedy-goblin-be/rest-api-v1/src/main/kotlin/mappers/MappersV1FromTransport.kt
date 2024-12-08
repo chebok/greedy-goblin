@@ -2,6 +2,7 @@ package io.greedy.goblin.api.v1.mappers
 
 import io.greedy.goblin.api.v1.mappers.exceptions.UnknownRequestClass
 import io.greedy.goblin.api.v1.models.*
+import io.greedy.goblin.api.v1.ws.GameConnectRequest
 import io.greedy.goblin.common.GameContext
 import io.greedy.goblin.common.models.ActionId
 import io.greedy.goblin.common.models.AppWorkMode
@@ -15,6 +16,7 @@ fun GameContext.fromTransport(request: Any) {
         is GameSceneRequest -> fromTransport(request)
         is GameActionRequest -> fromTransport(request)
         is GameEndRequest -> fromTransport(request)
+        is GameConnectRequest -> fromTransport(request)
         else -> throw UnknownRequestClass(request::class)
     }
 }
@@ -23,6 +25,11 @@ fun GameContext.fromTransport(request: GameStartRequest) {
     command = GameCommand.START
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
+}
+
+fun GameContext.fromTransport(request: GameConnectRequest) {
+    command = GameCommand.CONNECT
+    gameId = request.gameId.toGameId()
 }
 
 fun GameContext.fromTransport(request: GameEndRequest) {

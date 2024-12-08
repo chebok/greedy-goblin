@@ -9,7 +9,12 @@ object GameStub {
             GameCommand.ACTION -> performAction(ctx)
             GameCommand.END -> endGame(ctx)
             GameCommand.NONE -> invalidRequest(ctx)
+            GameCommand.CONNECT -> getScene(ctx)
+            GameCommand.DISCONNECT -> disconnect(ctx)
         }
+    }
+
+    private fun disconnect(ctx: GameContext) {
     }
 
     private fun startGame(ctx: GameContext) {
@@ -29,9 +34,11 @@ object GameStub {
                         Action(ActionId("action-002"), "Take the right path"),
                     ),
             )
+        ctx.commandState = CommandState.FINISH
     }
 
     private fun performAction(ctx: GameContext) {
+        ctx.commandState = CommandState.FINISH
     }
 
     private fun endGame(ctx: GameContext) {
