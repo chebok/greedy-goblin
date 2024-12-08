@@ -1,6 +1,7 @@
 package io.greedy.goblin.api.v1.mappers
 
 import io.greedy.goblin.api.v1.models.*
+import io.greedy.goblin.api.v1.ws.GameConnectResponse
 import io.greedy.goblin.common.GameContext
 import io.greedy.goblin.common.exceptions.UnknownGameCommand
 import io.greedy.goblin.common.models.*
@@ -11,6 +12,11 @@ fun GameContext.toTransport(): Any =
         GameCommand.GET_SCENE -> toTransportGameScene()
         GameCommand.ACTION -> toTransportGameAction()
         GameCommand.END -> toTransportGameEnd()
+        GameCommand.CONNECT -> toTransportGameConnect()
+        GameCommand.DISCONNECT ->
+            object {
+                val success = true
+            }
         GameCommand.NONE -> throw UnknownGameCommand(cmd)
     }
 
@@ -20,6 +26,13 @@ fun GameContext.toTransportGameStart(): GameStartResponse =
         message = if (errors.isEmpty()) "Game started successfully" else "Game failed to start",
         errors = errors.toTransportErrors(),
         gameId = gameId.asString(),
+    )
+
+fun GameContext.toTransportGameConnect(): GameConnectResponse =
+    GameConnectResponse(
+        success = commandState.toResult(),
+        message = if (errors.isEmpty()) "Game connected successfully" else "Failed to connect",
+        errors = errors.toTransportErrors(),
     )
 
 fun GameContext.toTransportGameScene(): GameSceneResponse =

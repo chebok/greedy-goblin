@@ -5,5 +5,7 @@ enum class GameCommand {
     START,
     ACTION,
     GET_SCENE,
+    CONNECT,
+    DISCONNECT,
     END,
 }

@@ -32,6 +32,17 @@ services:
 #        # маршрутизации будет рассмотрена ниже
 #        tag: app.logs
 
+
+  app:
+    image: greedy-goblin:latest  # Используем образ
+    depends_on:
+      - fluent-bit
+      - envoy
+#    environment:
+#      APP_ENV: production
+#      LOG_LEVEL: INFO
+
+
   fluent-bit:
     container_name: fluent-bit
     image: fluent/fluent-bit
