@@ -9,6 +9,7 @@ data class GameContext(
     var command: GameCommand = GameCommand.NONE, // Текущая команда, например, начало игры или действие
     var commandState: CommandState = CommandState.NONE, // Состояние выполнения команды
     // Игра и сцена
+    var playerId: PlayerId = PlayerId.NONE, // Уникальный идентификатор игрока
     var gameId: GameId = GameId.NONE, // Уникальный идентификатор игры
     var gameState: GameState = GameState.NONE, // Текущее состояние игрового процесса
     var gameScene: GameScene = GameScene(), // Текущая игровая сцена
