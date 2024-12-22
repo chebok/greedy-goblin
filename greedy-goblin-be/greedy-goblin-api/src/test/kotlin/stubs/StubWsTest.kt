@@ -28,7 +28,7 @@ class StubWsTest {
                     }
                 }
 
-            val gameId = "123"
+            val gameId = "game-started-123"
 
             client.webSocket("/ws/game/$gameId") {
                 val connectResponse = receiveDeserialized<GameSceneResponse>()
@@ -37,7 +37,7 @@ class StubWsTest {
                 val actionRequest =
                     GameActionRequest(
                         gameId = gameId,
-                        actionId = "move-forward",
+                        actionId = "action-001",
                     )
                 sendSerialized(actionRequest)
 
