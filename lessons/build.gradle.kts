@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") apply false
 }
 
-group = "io.goblingamble"
+group = "io.greedy.goblin.lessons"
 version = "1.0-SNAPSHOT"
 
 allprojects {
