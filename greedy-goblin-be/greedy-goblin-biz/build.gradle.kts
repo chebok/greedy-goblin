@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":greedy-goblin-common"))
-    implementation(project(":greedy-goblin-stubs"))
+    implementation(libs.cor)
     testImplementation(kotlin("test-junit"))
+    testImplementation(libs.coroutines.test) // api?
 }

@@ -70,8 +70,6 @@ private fun GameRequestDebug?.transportToStubCase(): AppStubs =
     when (this?.stub) {
         GameRequestDebugStubs.SUCCESS -> AppStubs.SUCCESS
         GameRequestDebugStubs.SERVER_ERROR -> AppStubs.SERVER_ERROR
-        GameRequestDebugStubs.INVALID_REQUEST -> AppStubs.INVALID_REQUEST
-        GameRequestDebugStubs.GAME_NOT_ACTIVE -> AppStubs.GAME_NOT_ACTIVE
-        GameRequestDebugStubs.BAD_ACTION -> AppStubs.BAD_ACTION
+        GameRequestDebugStubs.INVALID_REQUEST -> AppStubs.BAD_REQUEST
         null -> AppStubs.NONE
     }
