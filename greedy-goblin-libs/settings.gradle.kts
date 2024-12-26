@@ -27,3 +27,5 @@ plugins {
 include(":lib-logging-common")
 include(":lib-logging-kermit")
 include(":lib-logging-logback")
+
+include(":lib-cor-pattern")

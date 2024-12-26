@@ -237,9 +237,6 @@ components:
         - success         # Успешный сценарий
         - serverError     # Эмуляция серверной ошибки
         - invalidRequest    # Некорректные данные в запросе
-        # Оставшиеся стабы
-        - gameNotActive   # Игра неактивна (не начата или завершена)
-        - badAction       # Некорректное действие игрока
 
     GameRequestDebug:
       type: object

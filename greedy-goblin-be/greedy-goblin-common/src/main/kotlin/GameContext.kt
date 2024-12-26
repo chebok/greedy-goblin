@@ -19,6 +19,7 @@ data class GameContext(
     var requestId: RequestId = RequestId.NONE, // Уникальный идентификатор запроса для трейсинга
     var startTime: Instant = Instant.NONE, // Время начала обработки запроса для измерения производительности
     // Режим работы и стабы
+    var corSettings: CorSettings = CorSettings(),
     var workMode: AppWorkMode = AppWorkMode.PROD, // Режим работы приложения (продакшн, тестовый, отладочный)
     var stubCase: AppStubs = AppStubs.NONE, // Текущий стаб, используемый для отладки
 )

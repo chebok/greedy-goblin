@@ -4,6 +4,9 @@ coroutines = "1.9.0"
 kotlinx-datetime = "0.6.0"
 kotlinx-serialization = "1.6.3"
 
+konform = "0.10.0"
+arrow = "1.2.4"
+
 openapi-generator = "7.3.0"
 jackson = "2.16.1"
 
@@ -39,6 +42,11 @@ coroutines-reactive = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-react
 
 jackson-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson"}
 jackson-datatype = {module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson"}
+
+cor = { module = "io.greedy.goblin.libs:lib-cor-pattern" }
+konform = {module = "io.konform:konform", version.ref = "konform" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
+arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrow" }
 
 # Logging
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }

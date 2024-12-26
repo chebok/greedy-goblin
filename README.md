@@ -55,8 +55,7 @@
 
 ### Модули бизнес-логики
 
-1. [greedy-goblin-stubs](greedy-goblin-be/greedy-goblin-stubs) - Стабы для ответов сервиса
-2. [greedy-goblin-biz](greedy-goblin-be/greedy-goblin-biz) - Модуль бизнес-логики приложения: обслуживание стабов,
+1. [greedy-goblin-biz](greedy-goblin-be/greedy-goblin-biz) - Модуль бизнес-логики приложения: обслуживание стабов,
    валидация, работа с БД
 
 ## Библиотеки

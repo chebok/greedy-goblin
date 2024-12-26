@@ -36,9 +36,6 @@ dependencies {
     // v1 api
     implementation(project(":rest-api-v1"))
 
-    // Stubs
-    implementation(project(":greedy-goblin-stubs"))
-
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.serialization.json)
