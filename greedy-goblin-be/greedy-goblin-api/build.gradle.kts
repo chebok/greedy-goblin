@@ -30,6 +30,9 @@ dependencies {
 //                В Application.main добавить `install(DoubleReceive)`
 //                implementation("io.ktor:ktor-server-double-receive:${libs.versions.ktor.get()}")
 
+    // DB
+    implementation(projects.greedyGoblinRepoInmemory)
+
     implementation(project(":greedy-goblin-common"))
     implementation(project(":greedy-goblin-biz"))
 

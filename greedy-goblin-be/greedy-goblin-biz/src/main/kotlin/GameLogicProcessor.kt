@@ -1,9 +1,10 @@
 package io.greedy.goblin.biz
 
-import io.greedy.goblin.biz.general.initStatus
-import io.greedy.goblin.biz.general.operation
-import io.greedy.goblin.biz.general.stubs
-import io.greedy.goblin.biz.general.validation
+import io.greedy.goblin.biz.general.*
+import io.greedy.goblin.biz.logic.createGameProcessing
+import io.greedy.goblin.biz.logic.fillGameContext
+import io.greedy.goblin.biz.logic.playerActionProcessing
+import io.greedy.goblin.biz.logic.refreshActiveScene
 import io.greedy.goblin.biz.stubs.*
 import io.greedy.goblin.biz.validation.activeGameValidate
 import io.greedy.goblin.biz.validation.validateActionAvailable
@@ -22,10 +23,12 @@ class GameLogicProcessor(
         rootChain<GameContext> {
             initStatus("Инициализация статуса")
 
-            operation("Запрос на старт игры", GameCommand.START) {
+            operation("Запрос на создание игры", GameCommand.START) {
                 stubs("Обработка стабов") {
                     gameStartSuccess("Имитация успешной обработки", corSettings)
                 }
+                createGameProcessing("Создание игры", corSettings)
+                prepareResult("Завершение обработки")
             }
 
             operation("Запрос сцены", GameCommand.GET_SCENE) {
@@ -36,6 +39,9 @@ class GameLogicProcessor(
                 validation {
                     activeGameValidate("Проверка на доступность игры")
                 }
+                fillGameContext("Заполнение игрового контекста", corSettings)
+                refreshActiveScene("Запрос расчета новой сцены", corSettings)
+                prepareResult("Завершение обработки")
             }
 
             operation("Действие в игре", GameCommand.ACTION) {
@@ -46,6 +52,9 @@ class GameLogicProcessor(
                 validation {
                     validateActionAvailable("Проверка на доступность действия")
                 }
+                fillGameContext("Заполнение игрового контекста", corSettings)
+                playerActionProcessing("Обработка действия игрока", corSettings)
+                prepareResult("Завершение обработки")
             }
         }.build()
 }
