@@ -13,7 +13,7 @@ suspend fun WebSocketServerSession.handleGameSession(gameController: GameControl
     with(this) {
         val gameId = call.parameters["gameId"] ?: ""
         // Get playerId from token
-        val playerId = "player-$gameId"
+        val playerId = "f3df5d7a-1049-4cad-8f60-d510e79cac7e"
         // Only through GameController
         gameController.addPlayerToRoom(
             gameId = gameId,
@@ -33,7 +33,7 @@ suspend fun WebSocketServerSession.handleGameSession(gameController: GameControl
             .collect { message ->
                 try {
                     val request: GameActionRequest = apiV1Serializer.decodeFromString(message.readText())
-                    gameController.handlePlayerAction(request)
+                    gameController.handlePlayerAction(playerId, request)
                 } catch (e: SerializationException) {
                     println("Wrong data: $message")
                 }

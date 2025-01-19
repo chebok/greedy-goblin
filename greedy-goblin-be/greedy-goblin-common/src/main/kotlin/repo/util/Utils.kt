@@ -10,6 +10,7 @@ suspend fun <T> safeDbCall(block: suspend () -> Either<List<GameError>, T>): Eit
     try {
         block()
     } catch (e: Throwable) {
+        e.printStackTrace()
         listOf(
             errorSystem(
                 violationCode = "Database operation failed",

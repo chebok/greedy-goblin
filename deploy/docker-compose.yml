@@ -42,6 +42,15 @@ services:
 #      APP_ENV: production
 #      LOG_LEVEL: INFO
 
+  postgres:
+    image: postgres:16
+    container_name: pg_goblin
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+
 
   fluent-bit:
     container_name: fluent-bit

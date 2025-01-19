@@ -1,16 +1,15 @@
 package io.greedy.goblin.api.stub
 
-import io.greedy.goblin.api.AppSettings
 import io.greedy.goblin.api.module
 import io.greedy.goblin.api.v1.apiV1Serializer
 import io.greedy.goblin.api.v1.models.*
-import io.greedy.goblin.common.CorSettings
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.config.*
 import io.ktor.server.testing.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -41,7 +40,7 @@ class StubApiTest {
         function: suspend (HttpResponse) -> Unit,
     ): Unit =
         testApplication {
-            application { module(AppSettings(corSettings = CorSettings())) }
+            application { module(config = ApplicationConfig("application-test.yaml")) }
             val client =
                 createClient {
                     install(ContentNegotiation) {

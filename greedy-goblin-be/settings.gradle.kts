@@ -33,3 +33,4 @@ include(":greedy-goblin-biz")
 include(":greedy-goblin-api")
 // DB
 include(":greedy-goblin-repo-inmemory")
+include(":greedy-goblin-repo-postgres")

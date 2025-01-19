@@ -32,6 +32,11 @@ dependencies {
 
     // DB
     implementation(projects.greedyGoblinRepoInmemory)
+    implementation(projects.greedyGoblinRepoPostgres)
+    implementation(libs.db.postgres)
+    implementation(libs.db.hikari)
+    implementation(libs.bundles.exposed)
+    implementation("org.flywaydb:flyway-database-postgresql:11.2.0")
 
     implementation(project(":greedy-goblin-common"))
     implementation(project(":greedy-goblin-biz"))
