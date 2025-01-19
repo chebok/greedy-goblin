@@ -13,7 +13,6 @@ class ResponseV1SerializationTest {
             scene =
                 GameSceneView(
                     sceneId = "scene123",
-                    gameId = "game456",
                     image = "https://example.com/images/scene.jpg",
                     sceneTitle = "You are in a dark forest, with mushrooms scattered around.",
                     playerActions =
