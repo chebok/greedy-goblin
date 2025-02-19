@@ -23,18 +23,21 @@ class GameController(
             logId = "start-game",
         )
 
-    suspend fun handlePlayerAction(request: GameActionRequest) {
+    suspend fun handlePlayerAction(
+        playerId: String,
+        request: GameActionRequest,
+    ) {
         val gameId = request.gameId
         val action = request.actionId ?: ""
         // Бизнес логика
         val response = performAction(request)
         rooms[gameId]?.let { room ->
             room.sendToPlayer(
-                playerId = "player-$gameId",
+                playerId = playerId,
                 message = response,
             )
             room.processAction(
-                playerId = "player-$gameId",
+                playerId = playerId,
                 action = action,
             )
         }

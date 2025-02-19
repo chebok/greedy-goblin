@@ -60,7 +60,6 @@ fun GameContext.toTransportGameEnd(): GameEndResponse =
 private fun GameScene.toGameSceneView(): GameSceneView =
     GameSceneView(
         sceneId = sceneId.asString(),
-        gameId = gameId.asString(),
         image = image,
         sceneTitle = description,
         playerActions = actions.map { it.toActionView() },

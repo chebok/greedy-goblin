@@ -164,9 +164,6 @@ components:
         sceneId:
           type: string
           description: Unique identifier of the scene
-        gameId:
-          type: string
-          description: ID of the game session
         image:
           type: string
           description: URI of the scene's image

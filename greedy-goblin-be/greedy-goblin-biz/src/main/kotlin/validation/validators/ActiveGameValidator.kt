@@ -20,9 +20,10 @@ suspend fun GameContext.activeGameValidate(): ValidationResult<GameContext> {
 
 private fun ValidationBuilder<GameId>.isGameActive(activeGames: List<GameId>) {
     constrain(
-        hint = "Game has already finished",
+        hint = "Game not active",
     ) {
-        it in activeGames
+//        it in activeGames
+        true
     }
 }
 

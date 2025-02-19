@@ -4,10 +4,7 @@ import io.greedy.goblin.api.v1.mappers.exceptions.UnknownRequestClass
 import io.greedy.goblin.api.v1.models.*
 import io.greedy.goblin.api.v1.ws.GameConnectRequest
 import io.greedy.goblin.common.GameContext
-import io.greedy.goblin.common.models.ActionId
-import io.greedy.goblin.common.models.AppWorkMode
-import io.greedy.goblin.common.models.GameCommand
-import io.greedy.goblin.common.models.GameId
+import io.greedy.goblin.common.models.*
 import io.greedy.goblin.common.stubs.AppStubs
 
 fun GameContext.fromTransport(request: Any) {
@@ -42,6 +39,7 @@ fun GameContext.fromTransport(request: GameEndRequest) {
 fun GameContext.fromTransport(request: GameActionRequest) {
     command = GameCommand.ACTION
     gameId = request.gameId.toGameId()
+    playerId = PlayerId("f3df5d7a-1049-4cad-8f60-d510e79cac7e") // From token
     playerAction = request.actionId.toActionId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()

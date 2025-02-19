@@ -18,15 +18,14 @@ fun main(args: Array<String>) {
     val host = config.host
 
     // Явно запускаем сервер с конфигурированным портом и модулем
-    embeddedServer(Netty, port = port, host = host, module = Application::module).start(wait = true)
+    embeddedServer(Netty, port = port, host = host) { module(config) }.start(wait = true)
 }
 
-fun Application.module(appSettings: AppSettings = initAppSettings()) {
-    configureKoin(appSettings)
+fun Application.module(config: ApplicationConfig) {
+    configureKoin(config)
     configureSecurity()
     configureHTTP()
     configureSerialization()
-    configureDatabases()
     initSceneUpdates()
     configureSockets()
     configureRouting()

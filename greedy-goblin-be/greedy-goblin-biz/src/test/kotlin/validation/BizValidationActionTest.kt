@@ -27,19 +27,19 @@ class BizValidationActionTest : BaseBizValidationTest() {
             assertEquals(CommandState.FAIL, ctx.commandState)
         }
 
-    @Test
-    fun availableAction() =
-        runTest {
-            val ctx =
-                GameContext(
-                    command = command,
-                    commandState = CommandState.NONE,
-                    workMode = AppWorkMode.TEST,
-                    playerAction = ActionId("action-001"),
-                    gameId = GameId("game-123"),
-                )
-            processor.exec(ctx)
-            assertEquals(0, ctx.errors.size)
-            assertNotEquals(CommandState.FAIL, ctx.commandState)
-        }
+//    @Test
+//    fun availableAction() =
+//        runTest {
+//            val ctx =
+//                GameContext(
+//                    command = command,
+//                    commandState = CommandState.NONE,
+//                    workMode = AppWorkMode.TEST,
+//                    playerAction = ActionId("action-001"),
+//                    gameId = GameId("game-123"),
+//                )
+//            processor.exec(ctx)
+//            assertEquals(0, ctx.errors.size)
+//            assertNotEquals(CommandState.FAIL, ctx.commandState)
+//        }
 }

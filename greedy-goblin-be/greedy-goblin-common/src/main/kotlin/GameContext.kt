@@ -12,6 +12,7 @@ data class GameContext(
     var playerId: PlayerId = PlayerId.NONE, // Уникальный идентификатор игрока
     var gameId: GameId = GameId.NONE, // Уникальный идентификатор игры
     var gameState: GameState = GameState.NONE, // Текущее состояние игрового процесса
+    var players: List<Player> = listOf(), // Состояние всех игроков
     var gameScene: GameScene = GameScene(), // Текущая игровая сцена
     var playerAction: ActionId = ActionId.NONE, // Идентификатор действия, выбранного игроком
     // Диагностика и ошибки
