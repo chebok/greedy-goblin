@@ -28,7 +28,7 @@ static_resources:
                         route: { cluster: app }
                       - match: { prefix: "/api/v1/" }
                         route: { cluster: app }
-                      - match: { prefix: "/v1/ad/" }
+                      - match: { prefix: "/ws/game/" }
                         route: { cluster: app }
                       - match: { prefix: "/admin/" }
                         route: { cluster: keycloak }
@@ -36,6 +36,8 @@ static_resources:
                         route: { cluster: keycloak }
                       - match: { prefix: "/resources/" }
                         route: { cluster: keycloak }
+              upgrade_configs:
+                - upgrade_type: websocket
               http_filters:
                 - name: envoy.filters.http.jwt_authn
                   typed_config:

@@ -11,7 +11,7 @@ ktor:
     modules:
       - "io.greedy.goblin.api.ApplicationKt.module"
   database:
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    url: "jdbc:postgresql://pg_goblin:5432/postgres"
     driver: "org.postgresql.Driver"
     username: "admin"
     password: "admin"
